@@ -47,13 +47,10 @@ def get_sec_url(url, type):
             print('表创建失败')
             exit(1)
         try:
-            items = soup.select('tr > td.t > a')
-            # infolist > table:nth-child(4) > tbody > tr:nth-child(12) > td.t > a
-            # print(items)
+            items = soup.select('#infolist > div > table > tbody > tr > td.t > a')
             conn = pymysql.connect(host, username, password, database, charset='utf8')
             cursor = conn.cursor()
             for item in items:
-                # print(item)
                 name = str(item.get_text()).strip()
                 url = item.get('href').split('?')[0]
                 if url.split('.')[-1] == 'shtml':
@@ -72,7 +69,7 @@ def get_sec_url(url, type):
             conn.close()
 
     else:
-        print('空页')
+        # print('空页')
         return True
 
 
@@ -115,4 +112,4 @@ def get_all_url():
 
 
 # get_all_url()
-# get_sec_url('http://sjz.58.com/chengren/pn4','成人')
+# get_sec_url('http://sjz.58.com/ershoujiaju/pn2')

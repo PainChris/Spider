@@ -46,7 +46,6 @@ def get_one_url(url):
         create_table('sale')
         conn = pymysql.connect(host, username, password, database, charset='utf8')
         cursor = conn.cursor()
-        cursor.execute("truncate table sale")
         for item in items:
             # print(item.get('href'))
             if item.get('href') is None:
